@@ -2,8 +2,12 @@ linters:
   enabled:
     - errorlint
     - gofumpt
+    - govet
     - lll
 
   linters-settings:
+    govet:
+      disable:
+        - stdmethods
     lll:
-      line-length: 130
+      line-length: 100
