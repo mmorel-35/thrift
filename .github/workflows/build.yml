@@ -123,7 +123,6 @@ jobs:
           args: --verbose
           skip-cache: true
           version: latest
-          working-directory: lib/go
 
       - name: Run make check for test/go
         run: make -C test/go check
