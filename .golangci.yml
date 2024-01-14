@@ -3,9 +3,12 @@ linters:
     - errcheck
   enabled:
     - errorlint
+    - gocritic 
     - gofumpt
     - govet
     - lll
+    - revive
+    - usestdlibvars
 
   linters-settings:
     govet:
