@@ -4,6 +4,7 @@ linters:
   enabled:
     - asciicheck
     - errorlint
+    - gci
     - gocritic 
     - gofumpt
     - govet
@@ -12,6 +13,10 @@ linters:
     - usestdlibvars
 
   linters-settings:
+    gci:
+      - standard
+      - default
+      - prefix(github.com/apache/thrift)
     govet:
       disable:
         - stdmethods
