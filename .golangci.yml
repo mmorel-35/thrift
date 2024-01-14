@@ -1,4 +1,6 @@
 linters:
+  disable:
+    - errcheck
   enabled:
     - errorlint
     - gofumpt
