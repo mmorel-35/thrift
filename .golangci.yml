@@ -1,0 +1,9 @@
+linters:
+  enabled:
+    - errorlint
+    - gofumpt
+    - lll
+
+  linters-settings:
+    lll:
+      line-length: 130
