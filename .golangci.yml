@@ -11,3 +11,6 @@ linters:
         - stdmethods
     lll:
       line-length: 100
+run:
+  skip-dirs:
+    - tutorial/go/gen-go
