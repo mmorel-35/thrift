@@ -118,7 +118,11 @@ jobs:
         run: make -C lib/go
 
       - name: Run make check for lib/go
-        run: make -C lib/go check
+        uses: golangci/golangci-lint-action@v3
+        with:
+          args: --verbose
+          skip-cache: true
+          version: latest
 
       - name: Run make check for test/go
         run: make -C test/go check
