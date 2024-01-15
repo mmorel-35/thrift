@@ -56,7 +56,7 @@ func TestReadByte(t *testing.T) {
 		if v != test.v {
 			t.Fatalf("TestReadByte %d: value differs. Expected %d, got %d", i, test.v, test.r.v)
 		}
-		if err != test.err {
+		if !errors.Is(err, test.err) {
 			t.Fatalf("TestReadByte %d: error differs. Expected %s, got %s", i, test.err, test.r.err)
 		}
 	}
