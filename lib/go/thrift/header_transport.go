@@ -544,7 +544,7 @@ func (t *THeaderTransport) Read(p []byte) (read int, err error) {
 			// the last Read finished the frame, do endOfFrame
 			// handling here.
 			err = t.endOfFrame()
-		} else if err == io.EOF {
+		} else if errors.Is(err, io.EOF) {
 			err = t.endOfFrame()
 			if err != nil {
 				return
