@@ -24,6 +24,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"io"
 )
@@ -140,7 +141,7 @@ func (p *TFramedTransport) Read(buf []byte) (read int, err error) {
 	if p.readBuf != nil {
 
 		read, err = p.readBuf.Read(buf)
-		if err != io.EOF {
+		if !errors.Is(err, io.EOF) {
 			return
 		}
 
