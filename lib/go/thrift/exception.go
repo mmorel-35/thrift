@@ -86,8 +86,8 @@ func WrapTException(err error) TException {
 	if err == nil {
 		return nil
 	}
-
-	if te, ok := err.(TException); ok {
+	var te TException
+	if errors.As(err, &te) {
 		return te
 	}
 
