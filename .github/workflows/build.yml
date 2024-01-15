@@ -92,6 +92,12 @@ jobs:
         with:
           go-version: ${{ matrix.go }}
 
+      - uses: golangci/golangci-lint-action@v3
+        with:
+          args: --verbose
+          skip-cache: true
+          version: latest
+
       - name: Install dependencies
         run: |
           sudo apt-get update -yq
@@ -113,13 +119,6 @@ jobs:
         run: |
           chmod a+x compiler/cpp/thrift
           compiler/cpp/thrift -version
-
-      - name: Run make check for lib/go
-        uses: golangci/golangci-lint-action@v3
-        with:
-          args: --verbose
-          skip-cache: true
-          version: latest
 
       - name: Run make for go
         run: make -C lib/go
