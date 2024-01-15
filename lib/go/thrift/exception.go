@@ -39,11 +39,13 @@ func PrependError(prepend string, err error) error {
 	if errors.As(err, &te) {
 		switch te.TExceptionType() {
 		case TExceptionTypeTransport:
-			if t, ok := err.(TTransportException); ok {
+			var t TTransportException
+			if errors.As(err, &t) {
 				return prependTTransportException(prepend, t)
 			}
 		case TExceptionTypeProtocol:
-			if t, ok := err.(TProtocolException); ok {
+			var t TProtocolException
+			if errors.As(err, &t) {
 				return prependTProtocolException(prepend, t)
 			}
 		case TExceptionTypeApplication:
