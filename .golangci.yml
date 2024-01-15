@@ -1,7 +1,7 @@
 linters:
   disable:
     - errcheck
-  enabled:
+  enable:
     - asciicheck
     - errorlint
     - gci
@@ -25,4 +25,4 @@ linters:
       line-length: 100
 run:
   skip-dirs:
-    - tutorial/go/gen-go
+    - 'tutorial/go/gen-go'
