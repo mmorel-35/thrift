@@ -48,10 +48,10 @@ func (t *TDeserializer) ReadString(ctx context.Context, msg TStruct, s string) e
 		r.Reset()
 	}
 
-	if _, err = t.Transport.Write([]byte(s)); err != nil {
+	if _, err := t.Transport.Write([]byte(s)); err != nil {
 		return err
 	}
-	if err = msg.Read(ctx, t.Protocol); err != nil {
+	if err := msg.Read(ctx, t.Protocol); err != nil {
 		return err
 	}
 	return nil
@@ -63,10 +63,10 @@ func (t *TDeserializer) Read(ctx context.Context, msg TStruct, b []byte) error {
 		r.Reset()
 	}
 
-	if _, err = t.Transport.Write(b); err != nil {
+	if _, err := t.Transport.Write(b); err != nil {
 		return err
 	}
-	if err = msg.Read(ctx, t.Protocol); err != nil {
+	if err := msg.Read(ctx, t.Protocol); err != nil {
 		return err
 	}
 	return nil
