@@ -21,6 +21,7 @@ package thrift
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"strings"
@@ -91,7 +92,7 @@ func testTHeaderHeadersReadWriteProtocolID(t *testing.T, protoID THeaderProtocol
 	if err != nil {
 		t.Errorf("Read returned error: %v", err)
 	}
-	if err := reader.ReadFrame(context.Background()); err != nil && err != io.EOF {
+	if err := reader.ReadFrame(context.Background()); err != nil && !errors.Is(err, io.EOF) {
 		t.Errorf("reader.ReadFrame returned error: %v", err)
 	}
 	if string(read) != payload1+payload2 {
