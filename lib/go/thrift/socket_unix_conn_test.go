@@ -22,6 +22,7 @@
 package thrift
 
 import (
+	"errors"
 	"io"
 	"net"
 	"testing"
@@ -93,7 +94,7 @@ func TestSocketConnUnix(t *testing.T) {
 	}
 
 	// Now it's supposed to be closed on the server side
-	if err := sc.read0(); err != io.EOF {
+	if err := sc.read0(); err != nil && !errors.Is(err, io.EOF) {
 		t.Errorf("Expected to get EOF on read0, got %v", err)
 	}
 	if sc.IsOpen() {
