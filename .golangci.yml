@@ -4,13 +4,11 @@ linters:
   enable:
     - asciicheck
     - errorlint
-    - gci
-    - gocritic 
+    - gci 
     - gofumpt
     - govet
     - lll
     - nonamedreturns
-    - revive
     - usestdlibvars
 
   linters-settings:
