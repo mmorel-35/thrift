@@ -114,15 +114,15 @@ jobs:
           chmod a+x compiler/cpp/thrift
           compiler/cpp/thrift -version
 
-      - name: Run make for go
-        run: make -C lib/go
-
       - name: Run make check for lib/go
         uses: golangci/golangci-lint-action@v3
         with:
           args: --verbose
           skip-cache: true
           version: latest
+
+      - name: Run make for go
+        run: make -C lib/go
 
       - name: Run make check for test/go
         run: make -C test/go check
