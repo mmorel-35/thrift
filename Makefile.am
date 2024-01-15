@@ -141,6 +141,7 @@ EXTRA_DIST = \
 	.flake8 \
 	.gitattributes \
 	.gitignore \
+	.golangci.yml \
 	.travis.yml \
 	ApacheThrift.nuspec \
 	appveyor.yml \
