@@ -3,8 +3,9 @@ linters:
     - errcheck
   enable:
     - asciicheck
+    - contextcheck 
+    - gofmt
     - govet
-    - lll
     - usestdlibvars
 
 linters-settings:
