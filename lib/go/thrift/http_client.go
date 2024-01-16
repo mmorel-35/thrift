@@ -199,7 +199,7 @@ func (p *THttpClient) Flush(ctx context.Context) error {
 	// and create a new buffer for the next request.
 	buf := p.requestBuffer
 	p.requestBuffer = new(bytes.Buffer)
-	req, err := http.NewRequest("POST", p.url.String(), buf)
+	req, err := http.NewRequest(http.MethodPost, p.url.String(), buf)
 	if err != nil {
 		return NewTTransportExceptionFromError(err)
 	}

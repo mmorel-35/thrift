@@ -333,7 +333,7 @@ func (p *TJSONProtocol) ReadMapEnd(ctx context.Context) error {
 }
 
 func (p *TJSONProtocol) ReadListBegin(ctx context.Context) (elemType TType, size int, e error) {
-	return p.ParseElemListBegin()
+	return p.ParseElemListBegin(ctx)
 }
 
 func (p *TJSONProtocol) ReadListEnd(ctx context.Context) error {
@@ -341,7 +341,7 @@ func (p *TJSONProtocol) ReadListEnd(ctx context.Context) error {
 }
 
 func (p *TJSONProtocol) ReadSetBegin(ctx context.Context) (elemType TType, size int, e error) {
-	return p.ParseElemListBegin()
+	return p.ParseElemListBegin(ctx)
 }
 
 func (p *TJSONProtocol) ReadSetEnd(ctx context.Context) error {
@@ -472,15 +472,11 @@ func (p *TJSONProtocol) OutputElemListBegin(elemType TType, size int) error {
 	return nil
 }
 
-func (p *TJSONProtocol) ParseElemListBegin() (elemType TType, size int, e error) {
+func (p *TJSONProtocol) ParseElemListBegin(ctx context.Context) (elemType TType, size int, e error) {
 	if isNull, e := p.ParseListBegin(); isNull || e != nil {
 		return VOID, 0, e
 	}
-	// We don't really use the ctx in ReadString implementation,
-	// so this is safe for now.
-	// We might want to add context to ParseElemListBegin if we start to use
-	// ctx in ReadString implementation in the future.
-	sElemType, err := p.ReadString(context.Background())
+	sElemType, err := p.ReadString(ctx)
 	if err != nil {
 		return VOID, size, err
 	}
