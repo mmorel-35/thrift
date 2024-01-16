@@ -21,6 +21,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"github.com/apache/thrift/lib/go/thrift"
@@ -42,8 +43,9 @@ func handleClient(client *tutorial.CalculatorClient) (err error) {
 	work.Num2 = 0
 	quotient, err := client.Calculate(defaultCtx, 1, work)
 	if err != nil {
-		switch v := err.(type) {
-		case *tutorial.InvalidOperation:
+		var t *tutorial.InvalidOperation
+		switch {
+		case errors.As(err, &t):
 			fmt.Println("Invalid operation:", v)
 		default:
 			fmt.Println("Error during operation:", err)
@@ -57,8 +59,9 @@ func handleClient(client *tutorial.CalculatorClient) (err error) {
 	work.Num2 = 10
 	diff, err := client.Calculate(defaultCtx, 1, work)
 	if err != nil {
-		switch v := err.(type) {
-		case *tutorial.InvalidOperation:
+		var t *tutorial.InvalidOperation
+		switch {
+		case errors.As(err, &t):
 			fmt.Println("Invalid operation:", v)
 		default:
 			fmt.Println("Error during operation:", err)
