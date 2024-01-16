@@ -333,7 +333,7 @@ func (p *TJSONProtocol) ReadMapEnd(ctx context.Context) error {
 }
 
 func (p *TJSONProtocol) ReadListBegin(ctx context.Context) (elemType TType, size int, e error) {
-	return p.ParseElemListBegin()
+	return p.ParseElemListBegin(ctx)
 }
 
 func (p *TJSONProtocol) ReadListEnd(ctx context.Context) error {
@@ -341,7 +341,7 @@ func (p *TJSONProtocol) ReadListEnd(ctx context.Context) error {
 }
 
 func (p *TJSONProtocol) ReadSetBegin(ctx context.Context) (elemType TType, size int, e error) {
-	return p.ParseElemListBegin()
+	return p.ParseElemListBegin(ctx)
 }
 
 func (p *TJSONProtocol) ReadSetEnd(ctx context.Context) error {
