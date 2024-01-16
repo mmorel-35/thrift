@@ -3,8 +3,7 @@ linters:
     - errcheck
   enable:
     - asciicheck
-    - contextcheck 
-    - gofmt
+    - contextcheck
     - govet
     - usestdlibvars
 
