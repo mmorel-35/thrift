@@ -126,6 +126,9 @@ jobs:
       - name: Run make precross for go test
         run: make -C test/go precross
 
+      - name: Run make all-local for tutorial/go
+        run: make -C tutorial/go all-local
+
       - name: Upload go precross artifacts
         if: matrix.go == '1.21'
         uses: actions/upload-artifact@v3
@@ -135,6 +138,12 @@ jobs:
           path: |
             test/go/bin/*
           retention-days: 3
+
+      - uses: golangci/golangci-lint-action@v3
+        with:
+          args: --verbose
+          skip-cache: true
+          version: latest
 
   lib-java-kotlin:
     needs: compiler
