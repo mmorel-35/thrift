@@ -51,10 +51,10 @@ func (t *TDeserializer) ReadString(ctx context.Context, msg TStruct, s string) (
 	if _, err := t.Transport.Write([]byte(s)); err != nil {
 		return err
 	}
-	if err = msg.Read(ctx, t.Protocol); err != nil {
+	if err := msg.Read(ctx, t.Protocol); err != nil {
 		return err
 	}
-	return
+	return nil
 }
 
 func (t *TDeserializer) Read(ctx context.Context, msg TStruct, b []byte) (err error) {
@@ -66,10 +66,10 @@ func (t *TDeserializer) Read(ctx context.Context, msg TStruct, b []byte) (err er
 	if _, err := t.Transport.Write(b); err != nil {
 		return err
 	}
-	if err = msg.Read(ctx, t.Protocol); err != nil {
+	if err := msg.Read(ctx, t.Protocol); err != nil {
 		return err
 	}
-	return
+	return nil
 }
 
 // TDeserializerPool is the thread-safe version of TDeserializer,
